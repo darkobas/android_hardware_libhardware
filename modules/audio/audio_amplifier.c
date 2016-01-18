@@ -21,7 +21,6 @@
 #include <sys/types.h>
 
 #include <cutils/log.h>
-#include <cutils/str_parms.h>
 
 #include <hardware/audio_amplifier.h>
 #include <hardware/hardware.h>
@@ -77,12 +76,6 @@ static int amp_input_stream_standby(amplifier_device_t *device,
     return 0;
 }
 
-static int amp_set_parameters(struct amplifier_device *device,
-        struct str_parms *parms)
-{
-    return 0;
-}
-
 static int amp_dev_close(hw_device_t *device)
 {
     if (device)
@@ -121,7 +114,6 @@ static int amp_module_open(const hw_module_t *module, const char *name,
     amp_dev->input_stream_start = amp_input_stream_start;
     amp_dev->output_stream_standby = amp_output_stream_standby;
     amp_dev->input_stream_standby = amp_input_stream_standby;
-    amp_dev->set_parameters = amp_set_parameters;
 
     *device = (hw_device_t *) amp_dev;
 
